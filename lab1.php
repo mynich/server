@@ -1,141 +1,111 @@
-<?php
-// Лабораторная работа №1
-// Решение уравнения 6/x = 2
-// Язык: PHP
-
-// ============= ОСНОВНАЯ ПРОГРАММА =============
-
-echo "═══════════════════════════════════════════\n";
-echo "  Лабораторная работа №1\n";
-echo "  Решение уравнения 6/x = 2\n";
-echo "═══════════════════════════════════════════\n\n";
-
-// Функция для решения уравнения
-function solveEquation($equation) {
-    echo "📐 Уравнение: " . $equation . "\n";
-    
-    // Убираем пробелы
-    $equation = str_replace(' ', '', $equation);
-    
-    // Разделяем левую и правую часть по знаку "="
-    $parts = explode('=', $equation);
-    
-    // Проверяем, что уравнение имеет две части
-    if (count($parts) != 2) {
-        throw new Exception("Ошибка: неверный формат уравнения");
-    }
-    
-    $left = $parts[0];   // "6/x"
-    $right = $parts[1];  // "2"
-    
-    // Определяем оператор (поиск знака /)
-    if (strpos($left, '/') !== false) {
-        $operator = '/';
-        
-        // Разделяем левую часть на числитель и знаменатель
-        $terms = explode('/', $left);
-        
-        // Проверяем, что x находится в знаменателе
-        if ($terms[1] == 'x') {
-            $a = (float)$terms[0];  // Числитель = 6
-            $b = (float)$right;      // Правая часть = 2
-            
-            // Решаем уравнение: a / x = b  =>  x = a / b
-            $x = $a / $b;
-            
-            return [
-                'x' => $x,
-                'operator' => $operator,
-                'xLocation' => 'знаменатель левой части',
-                'solution' => "$a / x = $b  →  x = $a / $b = $x",
-                'check' => "$a / $x = " . ($a / $x)
-            ];
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, World!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    }
-    
-    throw new Exception("Уравнение должно быть вида: число / x = число");
-}
 
-// ============= ВЫПОЛНЕНИЕ =============
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-try {
-    // Решаем уравнение
-    $result = solveEquation("6/x=2");
-    
-    echo "\n✅ РЕЗУЛЬТАТ:\n";
-    echo "─────────────────────────────\n";
-    echo "   Оператор: " . $result['operator'] . "\n";
-    echo "   Расположение x: " . $result['xLocation'] . "\n";
-    echo "   Решение: " . $result['solution'] . "\n";
-    echo "\n   📌 x = " . $result['x'] . "\n";
-    echo "\n🔍 ПРОВЕРКА: " . $result['check'] . "\n";
-    echo "─────────────────────────────\n";
-    
-} catch (Exception $e) {
-    echo "\n❌ " . $e->getMessage() . "\n";
-}
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #f0f0f0;
+            border-bottom: 2px solid #0033a0;
+        }
 
-// ============= БЛОК-СХЕМА =============
-echo "\n\n═══════════════════════════════════════════\n";
-echo "📊 БЛОК-СХЕМА АЛГОРИТМА\n";
-echo "═══════════════════════════════════════════\n";
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-echo '
-    ┌─────────────────┐
-    │     НАЧАЛО      │
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │ Ввод: 6/x = 2   │
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │ Удалить пробелы │
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │ Разделить по "="│
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │ left = "6/x"    │
-    │ right = "2"     │
-    └────────┬────────┘
-             ↓
-        ┌────┴────┐
-        │ / ?     │
-        └────┬────┘
-             ↓ Да
-    ┌─────────────────┐
-    │ Разделить по "/"│
-    │ terms = [6, x]  │
-    └────────┬────────┘
-             ↓
-        ┌────┴────┐
-        │ x в     │
-        │знамен.? │
-        └────┬────┘
-             ↓ Да
-    ┌─────────────────┐
-    │ x = 6 / 2 = 3   │
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │ Вывод x = 3     │
-    └────────┬────────┘
-             ↓
-    ┌─────────────────┐
-    │      КОНЕЦ      │
-    └─────────────────┘
-';
+        .logo img {
+            height: 50px;
+        }
 
-// Дополнительная информация
-echo "\n\n═══════════════════════════════════════════\n";
-echo "📚 ИНФОРМАЦИЯ О ПРОГРАММЕ\n";
-echo "═══════════════════════════════════════════\n";
-echo "   Язык: PHP " . PHP_VERSION . "\n";
-echo "   Тип: Сценарий командной строки (CLI)\n";
-echo "   Задача: Решить уравнение a/x = b\n";
-echo "═══════════════════════════════════════════\n";
+        .title {
+            font-size: 20px;
+            color: #0033a0;
+        }
 
-?>
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .content {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .content h1 {
+            font-size: 56px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .dynamic-text {
+            margin-top: 30px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 10px;
+            color: #004085;
+            font-size: 18px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <img src="logo.jpg" alt="МосПолитех">
+        </div>
+        <div class="title">Лабораторная работа: Hello, World!</div>
+    </div>
+
+    <div class="main">
+        <div class="content">
+            <h1>Hello, World!</h1>
+            <div class="dynamic-text">
+                <?php
+                echo "Сегодня: " . date("d.m.Y");
+                echo "<br>Время: " . date("H:i:s");
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        задание для самостоятельной работы
+    </div>
+
+</body>
+</html>
