@@ -253,3 +253,103 @@ footer {
     transform: scale(1.01);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
+
+/* Комментарии */
+.comments-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #f5e2c1;
+}
+
+.comments-section h2 {
+    color: #d4a373;
+    margin-bottom: 25px;
+}
+
+.comment-list {
+    margin-bottom: 30px;
+}
+
+.comment {
+    background: #fffaf2;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #f5e2c1;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0dfca;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #c28a54;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+    color: #c1a177;
+}
+
+.comment-content {
+    color: #6b5a3e;
+    line-height: 1.5;
+}
+
+.no-comments {
+    color: #b8956e;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    background: #fffaf2;
+    border-radius: 15px;
+}
+
+.comment-form {
+    background: #fffaf2;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.comment-form h3 {
+    color: #d4a373;
+    margin-bottom: 20px;
+}
+
+.comment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #f0dfca;
+    border-radius: 10px;
+    font-family: inherit;
+    background: white;
+}
+
+.comment-form textarea {
+    resize: vertical;
+}
+
+.comment-form .btn {
+    background: #d4a373;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.comment-form .btn:hover {
+    background: #c28a54;
+}
